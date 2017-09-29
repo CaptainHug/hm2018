@@ -57,6 +57,7 @@
     <element path="lib\feathers.swc" />
     <element path="lib\starling.swc" />
     <element path="lib\away3d-core-fp11_4_1_6.swc" />
+    <element path="lib\greensock.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
