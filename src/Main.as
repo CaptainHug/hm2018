@@ -61,7 +61,9 @@ package
 			_stage3DProxy.addEventListener(Stage3DEvent.CONTEXT3D_CREATED, onContextCreated);
 			
 			// Disabled antiAlias due to: #0021772: Anti-Aliasing using configureBackBuffer() on iOS
-			//_stage3DProxy.antiAlias = 4;
+			if(DeviceUtil.Instance.platform == DeviceUtil.PLATFORM_DESKTOP) {
+				_stage3DProxy.antiAlias = 4;
+			}
 			_stage3DProxy.color = 0x0;
 		}
 		

@@ -3,6 +3,8 @@ package state
 	import background.Background_Default;
 	import starling.display.Image;
 	import style.Resource;
+	import threedee.Root3D;
+	import threedee.scene.Scene_Test;
 	/**
 	 * ...
 	 * @author jrh
@@ -20,6 +22,8 @@ package state
 			
 			_image = new Image(Kernel.Instance.assetManager.getTexture(Resource.GFX_GAME_LOGO));
 			addChild(_image);
+			
+			Root3D.Instance.switchScene(new Scene_Test());
 		}
 		
 		
