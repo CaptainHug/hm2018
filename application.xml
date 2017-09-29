@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?> 
-<application xmlns="http://ns.adobe.com/air/application/18.0">
+<application xmlns="http://ns.adobe.com/air/application/25.0">
 	
-	<id>air.hm2018</id>
-	<versionNumber>0.1</versionNumber>
+	<id>com.hm2018</id>
+	<versionNumber>0.0.1</versionNumber>
 	<supportedProfiles>mobileDevice</supportedProfiles>
 	<filename>hm2018</filename>
 	
@@ -14,9 +14,25 @@
 		<manifestAdditions><![CDATA[
 			
 			<manifest android:installLocation="auto">
-			  <uses-sdk android:minSdkVersion="8"/>
-				<uses-permission android:name="android.permission.INTERNET"/>
-				<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch"/>
+				<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="22" />
+				<uses-permission android:name="android.permission.INTERNET" />
+				<uses-permission android:name="android.permission.WAKE_LOCK" />
+				<uses-feature android:glEsVersion="0x00020000" android:required="true" />
+				<application>
+					<activity>
+						<intent-filter>
+							<action android:name="android.intent.action.MAIN" />
+							<category android:name="android.intent.category.LAUNCHER" />
+						</intent-filter>
+						<intent-filter>
+							<action android:name="android.intent.action.VIEW" />
+							<category android:name="android.intent.category.BROWSABLE" />
+							<category android:name="android.intent.category.DEFAULT" />
+							<data android:scheme="hm2018" />
+						</intent-filter>
+					</activity>
+				</application>
+				<supports-screens android:resizeable="true" android:smallScreens="false" android:largeScreens="true" android:xlargeScreens="true" android:normalScreens="true" android:anyDensity="true" />
 			</manifest>
 			
 		]]></manifestAdditions>
@@ -31,17 +47,51 @@
 			<key>UIPrerenderedIcon</key>  
 			<true/>
 			<key>UIApplicationExitsOnSuspend</key>
-			<true/>
+			<false/>
 			
 			<key>UIDeviceFamily</key>
 			<array>
 				<!-- iPhone support -->
 				<string>1</string> 
 				<!-- iPad support -->
-				<!--<string>2</string>-->
+				<string>2</string>
 			</array>
-				
+			
+			<key>UIBackgroundModes</key>
+			<array>
+				<string>remote-notification</string>
+			</array>
+			
+			<key>CFBundleURLTypes</key>
+			<array>
+			  <dict>
+			  <key>CFBundleURLSchemes</key>
+			  <array>
+				<string>hm2018</string>
+			  </array>
+			  </dict>
+			</array>
+			
+			<key>LSApplicationQueriesSchemes</key>
+			<array>
+				<string>fb</string>
+				<string>fbapi</string>
+				<string>fbauth2</string>
+				<string>fbshareextension</string>
+				<string>fb-messenger-api</string>
+			</array>
+			
+			<key>MinimumOSVersion</key>
+			<string>8.0</string>
+			
+			<key>NSAppTransportSecurity</key>
+			<dict>
+				<key>NSAllowsArbitraryLoads</key>
+				<true/>
+			</dict>
+			
         ]]></InfoAdditions> 
+		
 		<requestedDisplayResolution>high</requestedDisplayResolution>
     </iPhone> 
 	
@@ -53,7 +103,7 @@
 		<!--<autoOrients>false</autoOrients>-->
 		<!--<aspectRatio>landscape</aspectRatio>-->
 		<renderMode>direct</renderMode>
-		<!--<depthAndStencil>true</depthAndStencil>--> <!-- required for 3D -->
+		<depthAndStencil>true</depthAndStencil>
 	</initialWindow>
 	
 	<icon>
@@ -66,8 +116,11 @@
 		<image120x120>icons/icon_120.png</image120x120>
 		<image144x144>icons/icon_144.png</image144x144>
 		<image152x152>icons/icon_152.png</image152x152>
-		<!--<image512x512>icons/icon_512.png</image512x512>-->
+		<image512x512>icons/icon_512.png</image512x512>
 	</icon>
+	
+	<extensions>
+	</extensions>
 	
 	<!-- 
 	AIR options:
