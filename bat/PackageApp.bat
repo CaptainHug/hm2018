@@ -26,6 +26,10 @@ echo  [7] slow debug   (ipa-debug)
 echo  [8] "ad-hoc"     (ipa-ad-hoc)
 echo  [9] App Store    (ipa-app-store)
 echo.
+echo Desktop:
+echo.
+echo  [10] captive      (exe-captive-runtime)
+echo.
 
 :choice
 set /P C=[Choice]: 
@@ -35,6 +39,7 @@ set PLATFORM=android
 set OPTIONS=
 if %C% GTR 3 set PLATFORM=ios
 if %C% GTR 7 set PLATFORM=ios-dist
+if %C% GTR 9 set PLATFORM=desktop
 
 if "%C%"=="1" set TARGET=
 if "%C%"=="2" set TARGET=-debug
@@ -50,9 +55,12 @@ if "%C%"=="7" set OPTIONS=-connect %DEBUG_IP%
 if "%C%"=="8" set TARGET=-ad-hoc
 if "%C%"=="9" set TARGET=-app-store
 
+if "%C%"=="10" set TARGET=bundle
+
 call bat\Packager.bat
 
 if "%PLATFORM%"=="android" goto android-package
+if "%PLATFORM%"=="desktop" goto desktop-package
 
 :ios-package
 if "%AUTO_INSTALL_IOS%" == "yes" goto ios-install
@@ -77,6 +85,10 @@ echo Installing %OUTPUT% on the device...
 echo.
 adb -d install -r "%OUTPUT%"
 if errorlevel 1 goto installfail
+goto end
+
+:desktop-package
+echo Built %OUTPUT% for desktop
 goto end
 
 :installfail
