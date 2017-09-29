@@ -18,8 +18,22 @@ set INTERPRETER=-interpreter
 :desktop
 :: http://help.adobe.com/en_US/air/build/WSfffb011ac560372f-6fa6d7e0128cca93d31-8000.html
 
-set SCREEN_SIZE=NexusOne
+:: iOS - small
+:: iPhone 4 (3:2 aspect)
+::set SCREEN_SIZE=iPhone
+:: iPhone 5/6/7 (16:9 aspect)
+::set SCREEN_SIZE=320x568:320x568
+:: iPad (4:3 aspect)
+::set SCREEN_SIZE=384x512:384x512
+set SCREEN_SIZE=iPad
+
+:: iOS - large (most likely we don't have any PC monitors that can simulate some of these correctly - you may end up with squished graphics and offset button hit areas if you use them).
+:: iPhone 4 Retina (3:2 aspect)
 ::set SCREEN_SIZE=iPhoneRetina
+:: iPhone 5/6/7 Retina (16:9 aspect)
+::set SCREEN_SIZE=iPhone5Retina
+:: iPad Retina (4:3 aspect)
+::set SCREEN_SIZE=iPadRetina
 
 :desktop-run
 echo.
@@ -27,7 +41,7 @@ echo Starting AIR Debug Launcher with screen size '%SCREEN_SIZE%'
 echo.
 echo (hint: edit 'Run.bat' to test on device or change screen size)
 echo.
-adl -screensize %SCREEN_SIZE% "%APP_XML%" "%APP_DIR%"
+adl -screensize %SCREEN_SIZE% "%APP_XML%" "%APP_DIR%" -extdir extension/debug/
 if errorlevel 1 goto end
 goto endNoPause
 
