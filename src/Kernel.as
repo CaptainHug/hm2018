@@ -25,12 +25,6 @@ package
 			return _stageHeight;
 		}
 		
-		private const PLAY_AREA_ASPECT_RATIO:Number = 0.5625; // 9:16
-		private static var _playArea:Rectangle;
-		public static function get playArea():Rectangle{
-			return _playArea;
-		}
-		
 		public static var scaleFactor:int = 1;
 		public static var assetScale:int = 1;
 		public static var asf:Number = 1;
@@ -67,11 +61,7 @@ package
 			_assets = new AssetManager(asf, false);
 			_assets.verbose = CONFIG::debug;
 			
-			// Create play area rect
-			var playAreaWidth:int = (_stageHeight * PLAY_AREA_ASPECT_RATIO);
-			var playAreaXOffset:int = ((_stageWidth - playAreaWidth) * 0.5);
-			_playArea = new Rectangle(playAreaXOffset, 0, playAreaWidth, _stageHeight);
-			
+			// engine components
 			addChild(BackgroundManager.Instance);
 			
 			addChild(StateManager.Instance);

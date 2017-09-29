@@ -24,9 +24,6 @@ package
 			if ( instance != null )
 				throw new Error("ERROR: Private constructor. Use Instance instead!");
 			
-			this.x = Kernel.playArea.x
-			this.y = Kernel.playArea.y;
-			
 			_popups = [];
 			_alertQueue = [];
 		}
