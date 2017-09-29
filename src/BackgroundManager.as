@@ -1,6 +1,5 @@
 package 
 {
-	import background.Background_Default;
 	import background.BaseBackground;
 	import starling.display.Sprite;
 	/**
@@ -20,8 +19,6 @@ package
 			
 			if ( instance != null )
 				throw new Error("ERROR: Private constructor. Use Instance instead!");
-				
-			switchBackground(new Background_Default());
 		}
 		
 		

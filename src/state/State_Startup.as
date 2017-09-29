@@ -1,5 +1,6 @@
 package state 
 {
+	import background.Background_Default;
 	import starling.display.Image;
 	import style.Resource;
 	/**
@@ -15,6 +16,7 @@ package state
 		{
 			super();
 			
+			BackgroundManager.Instance.switchBackground(new Background_Default());
 			
 			_image = new Image(Kernel.Instance.assetManager.getTexture(Resource.GFX_GAME_LOGO));
 			addChild(_image);
