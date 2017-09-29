@@ -6,6 +6,7 @@ cd %~dp0 & cd ..
 if "%PLATFORM%"=="android" goto android-config
 if "%PLATFORM%"=="ios" goto ios-config
 if "%PLATFORM%"=="ios-dist" goto ios-dist-config
+if "%PLATFORM%"=="desktop" goto desktop-config
 goto start
 
 :android-config
@@ -34,6 +35,14 @@ set DIST_EXT=ipa
 set TYPE=ipa
 goto start
 
+:desktop-config
+set CERT_FILE=%AND_CERT_FILE%
+set SIGNING_OPTIONS=%DESKTOP_SIGNING_OPTIONS%
+set ICONS=%AND_ICONS%
+set DIST_EXT=
+set TYPE=
+goto start-desktop
+
 :start
 if not exist "%CERT_FILE%" goto certificate
 :: Output file
@@ -45,6 +54,21 @@ echo Packaging: %OUTPUT%
 echo using certificate: %CERT_FILE%...
 echo.
 call adt -package -target %TYPE%%TARGET% %OPTIONS% %SIGNING_OPTIONS% "%OUTPUT%" "%APP_XML%" %FILE_OR_DIR% -extdir extension/release/
+echo.
+if errorlevel 1 goto failed
+goto end
+
+:start-desktop
+if not exist "%CERT_FILE%" goto certificate
+:: Output file
+set FILE_OR_DIR=%FILE_OR_DIR% -C "%ICONS%" .
+if not exist "%DIST_PATH%" md "%DIST_PATH%"
+set OUTPUT=%DIST_PATH%\%DIST_NAME%-%TARGET%.%DIST_EXT%
+:: Package
+echo Packaging: %OUTPUT%
+echo using certificate: %CERT_FILE%...
+echo.
+call adt -package %SIGNING_OPTIONS% -target %TYPE%%TARGET% %OPTIONS% "%OUTPUT%" "%APP_XML%" %FILE_OR_DIR% -extdir extension/release/
 echo.
 if errorlevel 1 goto failed
 goto end

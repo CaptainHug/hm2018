@@ -3,7 +3,7 @@
 	
 	<id>com.hm2018</id>
 	<versionNumber>0.0.1</versionNumber>
-	<supportedProfiles>mobileDevice</supportedProfiles>
+	<supportedProfiles>mobileDevice extendedDesktop</supportedProfiles>
 	<filename>hm2018</filename>
 	
 	<name>hm2018</name>
@@ -116,7 +116,7 @@
 		<image120x120>icons/icon_120.png</image120x120>
 		<image144x144>icons/icon_144.png</image144x144>
 		<image152x152>icons/icon_152.png</image152x152>
-		<image512x512>icons/icon_512.png</image512x512>
+		<!-- <image512x512>icons/icon_512.png</image512x512> -->
 	</icon>
 	
 	<extensions>
