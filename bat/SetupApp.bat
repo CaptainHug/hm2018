@@ -9,22 +9,24 @@ cd %~dp0 & cd ..
 :: NOTICE: all paths are relative to project root
 
 :: Android packaging
+set AIR_NOANDROIDFLAIR=true
 set AND_CERT_NAME="hm2018"
-set AND_CERT_PASS=fd
+set AND_CERT_PASS=Badg3r
 set AND_CERT_FILE=cert\hm2018.p12
 set AND_ICONS=icons/android
 
 set AND_SIGNING_OPTIONS=-storetype pkcs12 -keystore "%AND_CERT_FILE%" -storepass %AND_CERT_PASS%
 
 :: iOS packaging
-set IOS_DIST_CERT_FILE=
-set IOS_DEV_CERT_FILE=
-set IOS_DEV_CERT_PASS=
-set IOS_PROVISION=cert\hm2018.mobileprovision
+set IOS_DIST_CERT_FILE=cert\iphone_dist.p12
+set IOS_DEV_CERT_FILE=cert\iphone_dev.p12
+set IOS_DEV_CERT_PASS=Badg3r
+set IOS_DIST_PROVISION=cert\hm2018_adhoc.mobileprovision
+set IOS_DEV_PROVISION=cert\hm2018_dev.mobileprovision
 set IOS_ICONS=icons/ios
 
-set IOS_DEV_SIGNING_OPTIONS=-storetype pkcs12 -keystore "%IOS_DEV_CERT_FILE%" -storepass %IOS_DEV_CERT_PASS% -provisioning-profile %IOS_PROVISION%
-set IOS_DIST_SIGNING_OPTIONS=-storetype pkcs12 -keystore "%IOS_DIST_CERT_FILE%" -provisioning-profile %IOS_PROVISION%
+set IOS_DEV_SIGNING_OPTIONS=-storetype pkcs12 -keystore "%IOS_DEV_CERT_FILE%" -storepass %IOS_DEV_CERT_PASS% -provisioning-profile %IOS_DEV_PROVISION%
+set IOS_DIST_SIGNING_OPTIONS=-storetype pkcs12 -keystore "%IOS_DIST_CERT_FILE%" -storepass %IOS_DEV_CERT_PASS% -provisioning-profile %IOS_DIST_PROVISION% 
 
 :: Application descriptor
 set APP_XML=application.xml
